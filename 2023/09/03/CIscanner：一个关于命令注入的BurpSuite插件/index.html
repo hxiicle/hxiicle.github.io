@@ -262,7 +262,7 @@
             
               <div class="markdown-body">
                 
-                <p>工具目前还是处于需要更新的状态，不过基础功能已经完备，就是扫描可能会有点慢（90度鞠躬道歉。<br><br />目前会暂停更新，不过我会回来的！（敝帚自珍，一只菜猫的自知。<br><br />工具链接  <a target="_blank" rel="noopener" href="https://github.com/hxiicle/CIscanner">CIscanner</a></p>
+                <p>工具目前还是处于需要更新的状态，不过基础功能已经完备，就是扫描可能会有点慢（90度鞠躬道歉。<br>目前会暂停更新，不过我会回来的！（敝帚自珍，一只菜猫的自知。<br>工具链接  <a target="_blank" rel="noopener" href="https://github.com/hxiicle/CIscanner">CIscanner</a></p>
 <span id="more"></span>
 
 <h3 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h3><p>该工具仅用于安全自查检测<br>由于传播、利用此工具所提供的信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，作者不为此承担任何责任。<br>本人拥有对此工具的修改和解释权。未经网络安全部门及相关部门允许，不得善自使用本工具进行任何攻击活动，不得以任何方式将其用于商业目的。</p>
@@ -272,7 +272,7 @@
 <li>重中之重！工具外观及部分代码借鉴了<a target="_blank" rel="noopener" href="https://github.com/f0ng/log4j2burpscanner">f0ng老师的log4j2burpscanner</a>以及<a target="_blank" rel="noopener" href="https://github.com/pmiaowu/BurpShiroPassiveScan">P喵呜老师的BurpShiroPassiveScan</a>，感谢！</li>
 </ul>
 <h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>会修改并发送URL参数和请求体参数内的所有参数，请求体目前只支持<code>application/x-www-form-urlencoded</code>的数据类型，目前只支持单线程，所以扫描比较慢，后续一定会改进（今日画大饼完成！</p>
-<h3 id="使用截图"><a href="#使用截图" class="headerlink" title="使用截图"></a>使用截图</h3><p>每次打开Burp需要选中Open，插件才会启动<br><img src="/img/images/CIscanner/1.jpg" srcset="/img/loading.gif" lazyload alt="设置页面"><br><br />工具会在Burp目录下生成两个文件<code>CIScanner.properties</code>和<code>CIScanner_SubDomain.txt</code><br><br /><code>CIScanner.properties</code>：用于记录配置信息<br><br /><code>CIScanner_SubDomain.txt</code>：用于存储未在DnsLog检测到的域名，用于查漏补缺，满9条就会删除前5条（这也是扫描慢的主要原因）<br><img src="/img/images/CIscanner/3.jpg" srcset="/img/loading.gif" lazyload alt="CIScanner_SubDomain.txt"><br><br />工具会记录下每次改动的数据包，有漏洞的会标记<code>Danger</code>，<br><strong>ps：有一个Bug，只有拖动表格（下图红色指向的位置），表格里的数据才会在页面显示，菜猫我啊真的有点搞不来，如果有大神看到，求指点，提前感谢！</strong><br><img src="/img/images/CIscanner/2.jpg" srcset="/img/loading.gif" lazyload alt="使用截图"><br><br />发现了漏洞也会在<code>Extensions</code>显示<br><img src="/img/images/CIscanner/4.jpg" srcset="/img/loading.gif" lazyload alt="发现漏洞"></p>
+<h3 id="使用截图"><a href="#使用截图" class="headerlink" title="使用截图"></a>使用截图</h3><p>每次打开Burp需要选中Open，插件才会启动<br><img src="/img/images/CIscanner/1.jpg" srcset="/img/loading.gif" lazyload alt="设置页面"><br>工具会在Burp目录下生成两个文件<code>CIScanner.properties</code>和<code>CIScanner_SubDomain.txt</code><br><code>CIScanner.properties</code>：用于记录配置信息<br><code>CIScanner_SubDomain.txt</code>：用于存储未在DnsLog检测到的域名，用于查漏补缺，满9条就会删除前5条（这也是扫描慢的主要原因）<br><img src="/img/images/CIscanner/3.jpg" srcset="/img/loading.gif" lazyload alt="CIScanner_SubDomain.txt"><br>工具会记录下每次改动的数据包，有漏洞的会标记<code>Danger</code>，<br><strong>ps：有一个Bug，只有拖动表格（下图红色指向的位置），表格里的数据才会在页面显示，菜猫我啊真的有点搞不来，如果有大神看到，求指点，提前感谢！</strong><br><img src="/img/images/CIscanner/2.jpg" srcset="/img/loading.gif" lazyload alt="使用截图"><br>发现了漏洞也会在<code>Extensions</code>显示<br><img src="/img/images/CIscanner/4.jpg" srcset="/img/loading.gif" lazyload alt="发现漏洞"></p>
 <h3 id="后续功能"><a href="#后续功能" class="headerlink" title="后续功能"></a>后续功能</h3><ul>
 <li>多线程</li>
 <li>表格数据的显示问题</li>
