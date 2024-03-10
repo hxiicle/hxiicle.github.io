@@ -16,11 +16,11 @@
   <meta name="author" content="hxiicle">
   <meta name="keywords" content="">
   
-    <meta name="description" content="工具目前还是处于需要更新的状态，不过基础功能已经完备，就是扫描可能会有点慢（90度鞠躬道歉。目前会暂停更新，不过我会回来的！（敝帚自珍，一只菜猫的自知。工具链接  CIscanner">
+    <meta name="description" content="菜猫我回来了！省流版：代码优化，加了线程且线程可控工具链接  CIscanner">
   
   
   
-  <title>CIscanner：一个关于命令注入的BurpSuite插件 - hxiicle&#39;s Blog</title>
+  <title>CIscanner V2.0.0 上线！ - hxiicle&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -186,7 +186,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CIscanner：一个关于命令注入的BurpSuite插件"></span>
+            <span id="subtitle" data-typed-text="CIscanner V2.0.0 上线！"></span>
           
         </div>
 
@@ -197,8 +197,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-03 19:54" pubdate>
-          2023年9月3日 晚上
+        <time datetime="2024-03-10 21:20" pubdate>
+          2024年3月10日 晚上
         </time>
       </span>
     
@@ -257,26 +257,30 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">CIscanner：一个关于命令注入的BurpSuite插件</h1>
+            <h1 id="seo-header">CIscanner V2.0.0 上线！</h1>
             
             
               <div class="markdown-body">
                 
-                <p>工具目前还是处于需要更新的状态，不过基础功能已经完备，就是扫描可能会有点慢（90度鞠躬道歉。<br><br />目前会暂停更新，不过我会回来的！（敝帚自珍，一只菜猫的自知。<br><br />工具链接  <a target="_blank" rel="noopener" href="https://github.com/hxiicle/CIscanner">CIscanner</a></p>
+                <p>菜猫我回来了！省流版：代码优化，加了线程且线程可控<br><br />工具链接  <a target="_blank" rel="noopener" href="https://github.com/hxiicle/CIscanner">CIscanner</a></p>
 <span id="more"></span>
 
 <h3 id="免责声明"><a href="#免责声明" class="headerlink" title="免责声明"></a>免责声明</h3><p>该工具仅用于安全自查检测<br>由于传播、利用此工具所提供的信息而造成的任何直接或者间接的后果及损失，均由使用者本人负责，作者不为此承担任何责任。<br>本人拥有对此工具的修改和解释权。未经网络安全部门及相关部门允许，不得善自使用本工具进行任何攻击活动，不得以任何方式将其用于商业目的。</p>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
 <li>工具利用<code>Java11</code>编写，其他版本暂未测试支不支持</li>
 <li>使用需要开启BurpSuite的被动扫描</li>
+<li>会修改并发送URL参数和请求体参数内的所有参数，请求体目前只支持<code>application/x-www-form-urlencoded</code>的数据类型</li>
+<li>工具有两个版本，whitelist版本以及target版本<ul>
+<li>targetlist版本，仅扫描写入targetlist内的目标（建议使用这个版本，因为获取dnslog需要不断访问dnslog网站，如果网站被访问次数过多，会无法及时响应）<br><br /><img src="/img/images/CIscanner2/targetlist.jpg" srcset="/img/loading.gif" lazyload alt="targetlist"></li>
+<li>whitelist版本，过滤白名单内的目标<br><br /><img src="/img/images/CIscanner2/whitelist.jpg" srcset="/img/loading.gif" lazyload alt="whitelist"></li>
+</ul>
+</li>
 <li>重中之重！工具外观及部分代码借鉴了<a target="_blank" rel="noopener" href="https://github.com/f0ng/log4j2burpscanner">f0ng老师的log4j2burpscanner</a>以及<a target="_blank" rel="noopener" href="https://github.com/pmiaowu/BurpShiroPassiveScan">P喵呜老师的BurpShiroPassiveScan</a>，感谢！</li>
 </ul>
-<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>会修改并发送URL参数和请求体参数内的所有参数，请求体目前只支持<code>application/x-www-form-urlencoded</code>的数据类型，目前只支持单线程，所以扫描比较慢，后续一定会改进（今日画大饼完成！</p>
-<h3 id="使用截图"><a href="#使用截图" class="headerlink" title="使用截图"></a>使用截图</h3><p>每次打开Burp需要选中Open，插件才会启动<br><img src="/img/images/CIscanner/1.jpg" srcset="/img/loading.gif" lazyload alt="设置页面"><br><br />工具会在Burp目录下生成两个文件<code>CIScanner.properties</code>和<code>CIScanner_SubDomain.txt</code><br><br /><code>CIScanner.properties</code>：用于记录配置信息<br><br /><code>CIScanner_SubDomain.txt</code>：用于存储未在DnsLog检测到的域名，用于查漏补缺，满9条就会删除前5条（这也是扫描慢的主要原因）<br><img src="/img/images/CIscanner/3.jpg" srcset="/img/loading.gif" lazyload alt="CIScanner_SubDomain.txt"><br><br />工具会记录下每次改动的数据包，有漏洞的会标记<code>Danger</code>，<br><strong>ps：有一个Bug，只有拖动表格（下图红色指向的位置），表格里的数据才会在页面显示，菜猫我啊真的有点搞不来，如果有大神看到，求指点，提前感谢！</strong><br><img src="/img/images/CIscanner/2.jpg" srcset="/img/loading.gif" lazyload alt="使用截图"><br><br />发现了漏洞也会在<code>Extensions</code>显示<br><img src="/img/images/CIscanner/4.jpg" srcset="/img/loading.gif" lazyload alt="发现漏洞"></p>
+<h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>会修改并发送URL参数和请求体参数内的所有参数，请求体目前只支持<code>application/x-www-form-urlencoded</code>的数据类型<br><br /><del>目前只支持单线程，所以扫描比较慢，后续一定会改进（今日画大饼完成！</del><br><br />支持多线程，且线程可控</p>
+<h3 id="使用截图"><a href="#使用截图" class="headerlink" title="使用截图"></a>使用截图</h3><p>每次打开Burp需要选中Start，插件才会启动，线程默认是4，且仅支持填入1-10内的整数<br><br /><img src="/img/images/CIscanner2/1.jpg" srcset="/img/loading.gif" lazyload alt="设置页面"><br><br />工具会在Burp目录下生成文件<code>CIScanner.properties</code>，用于记录配置信息<br><br /><img src="/img/images/CIscanner2/2.jpg" srcset="/img/loading.gif" lazyload alt="CIScanner.properties"><br><br />工具会记录下每次改动的数据包，有漏洞的会标记<code>Danger</code><br><br /><img src="/img/images/CIscanner2/3.jpg" srcset="/img/loading.gif" lazyload alt="使用截图"><br><br />发现了漏洞也会在<code>Extensions</code>显示<br><br /><img src="/img/images/CIscanner2/4.jpg" srcset="/img/loading.gif" lazyload alt="发现漏洞"><br><br />Payload格式: aaa{DNSSERVER}，如果没有{DNSSERVER}，则默认直接追加至Payload后<br><br /><img src="/img/images/CIscanner2/5.jpg" srcset="/img/loading.gif" lazyload alt="Payload格式"></p>
 <h3 id="后续功能"><a href="#后续功能" class="headerlink" title="后续功能"></a>后续功能</h3><ul>
-<li>多线程</li>
-<li>表格数据的显示问题</li>
-<li>黑名单功能</li>
+<li>Accept 白名单增加</li>
 </ul>
 
                 
@@ -306,8 +310,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CIscanner：一个关于命令注入的BurpSuite插件</div>
-      <div>http://example.com/2023/09/03/CIscanner：一个关于命令注入的BurpSuite插件/</div>
+      <div>CIscanner V2.0.0 上线！</div>
+      <div>http://example.com/2024/03/10/CIscanner-V2-0-0-上线！/</div>
     </div>
     <div class="license-meta">
       
@@ -319,7 +323,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年9月3日</div>
+          <div>2024年3月10日</div>
         </div>
       
       
@@ -351,18 +355,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/01/01/Github-%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE/" title="Github 上传项目">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Github 上传项目</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/03/Github-%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97/" title="Github 个人博客搭建指南">
-                        <span class="hidden-mobile">Github 个人博客搭建指南</span>
+                      <a href="/2024/01/01/Github-%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE/" title="Github 上传项目">
+                        <span class="hidden-mobile">Github 上传项目</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
